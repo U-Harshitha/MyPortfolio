@@ -1,0 +1,76 @@
+\documentclass[letterpaper, 10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+% Custom commands for section headers and colored text
+\newcommand{\resumeSection}[1]{\section*{\textcolor{blue}{\large #1}}}
+\newcommand{\resumeSubSection}[1]{\subsection*{#1}}
+\newcommand{\resumeSubSubSection}[1]{\hspace{12pt}\textit{#1}}
+\newcommand{\resumeItem}[2]{\item \textbf{#1}: #2}
+\newcommand{\resumeSubItem}[1]{\hspace{12pt}\textbullet\hspace{6pt}#1}
+
+% Name and contact information
+\newcommand{\Name}{Your Name}
+\newcommand{\Email}{youremail@example.com}
+\newcommand{\Phone}{(123) 456-7890}
+\newcommand{\LinkedIn}{\href{https://www.linkedin.com/in/your-profile}{LinkedIn Profile}}
+\newcommand{\GitHub}{\href{https://github.com/yourusername}{GitHub Profile}}
+
+\begin{document}
+
+% Header
+\begin{center}
+    \textbf{\Huge \Name}\\
+    \vspace{4pt}
+    \small \Email \hspace{10pt} \textbullet \hspace{10pt} \Phone \hspace{10pt} \textbullet \hspace{10pt} \LinkedIn \hspace{10pt} \textbullet \hspace{10pt} \GitHub
+\end{center}
+
+% Education section
+\resumeSection{Education}
+\begin{itemize}[leftmargin=*, label={}]
+    \resumeItem{University Name}{Bachelor of Science in Computer Science \hfill \textit{Expected Graduation: May 2024}}
+    \resumeSubItem{Relevant Coursework: Data Structures, Algorithms, Web Development, Database Systems}
+\end{itemize}
+
+% Projects section
+\resumeSection{Projects}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Project 1}{A description of Project 1 and its key features. Technologies used: XYZ.}
+    \resumeItem{Project 2}{A description of Project 2 and its key features. Technologies used: ABC.}
+\end{itemize}
+
+% Skills section
+\resumeSection{Skills}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Programming Languages}{Python, Java, JavaScript}
+    \resumeItem{Web Development}{HTML, CSS, React}
+    \resumeItem{Database}{SQL, MongoDB}
+\end{itemize}
+
+% Extracurricular section
+\resumeSection{Extracurricular Activities}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Club Name}{Description of your involvement and any leadership positions.}
+    \resumeItem{Volunteer Work}{Description of your volunteer activities and their impact.}
+\end{itemize}
+
+% Awards section
+\resumeSection{Awards and Honors}
+\begin{itemize}[leftmargin=*]
+    \resumeItem{Scholarship Name}{Description of the scholarship and your achievement.}
+    \resumeItem{Award Name}{Description of the award and the recognition received.}
+\end{itemize}
+
+% Footer
+\begin{center}
+    \footnotesize Last updated: \today
+\end{center}
+
+\end{document}
+

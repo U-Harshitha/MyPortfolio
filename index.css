@@ -147,8 +147,8 @@ profile-image{
   grid-gap: 0.9rem;
 }
 .profile-image{
-  border-radius: 100px;
-
+  border-radius: 80px;
+  width: 200px;
 }
 .card .project-bio p {
   font-size: 0.83rem;

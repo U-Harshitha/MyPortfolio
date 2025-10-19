@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark techy theme with teal & coral accents */
+    --background: 200 25% 8%;
+    --foreground: 180 15% 96%;
+
+    --card: 200 20% 11%;
+    --card-foreground: 180 15% 96%;
+
+    --popover: 200 20% 11%;
+    --popover-foreground: 180 15% 96%;
+
+    /* Vibrant teal primary */
+    --primary: 175 85% 55%;
+    --primary-foreground: 200 25% 8%;
+
+    /* Warm coral secondary */
+    --secondary: 15 90% 65%;
+    --secondary-foreground: 200 25% 8%;
+
+    --muted: 200 15% 18%;
+    --muted-foreground: 180 10% 60%;
+
+    --accent: 175 85% 55%;
+    --accent-foreground: 200 25% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 180 15% 96%;
+
+    --border: 200 15% 20%;
+    --input: 200 15% 20%;
+    --ring: 175 85% 55%;
+
+    --radius: 0.5rem;
+
+    /* Gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(175 85% 55%), hsl(15 90% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(200 25% 8%), hsl(200 20% 11%));
+    
+    /* Glow effects */
+    --glow-primary: 0 0 40px hsl(175 85% 55% / 0.3);
+    --glow-secondary: 0 0 40px hsl(15 90% 65% / 0.3);
+    
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-['Inter',sans-serif];
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .hover-glow {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--glow-primary);
+    transform: translateY(-2px);
+  }
+
+  .section-padding {
+    @apply py-20 px-6 md:px-12 lg:px-24;
+  }
+}

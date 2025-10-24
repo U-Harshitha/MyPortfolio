@@ -65,7 +65,7 @@ const Hero = () => {
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#contact"
+              href="https://drive.google.com/uc?export=download&id=1xUmLJkkcJ2N58XIkFO7NDzeac2ln5-j-"
               className="px-8 py-3 border border-primary rounded-full text-foreground font-medium hover:bg-primary/10 transition-colors flex items-center gap-2"
             >
               <Download size={18} />
@@ -80,7 +80,7 @@ const Hero = () => {
             className="flex items-center justify-center gap-6"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/U-Harshitha"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-primary transition-colors"
@@ -89,7 +89,7 @@ const Hero = () => {
               <Github size={24} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/harshitha-upadhyayula/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-primary transition-colors"
@@ -98,7 +98,7 @@ const Hero = () => {
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:harshitha@example.com"
+              href="mailto:harshitha.srikk@gmail.com"
               className="text-foreground/60 hover:text-primary transition-colors"
               aria-label="Email"
             >

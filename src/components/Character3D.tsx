@@ -1,98 +1,117 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+// import { useEffect, useRef } from 'react';
 
-function Character() {
-  const groupRef = useRef<THREE.Group>(null);
+// export default function Character3D() {
+//   const iframeRef = useRef<HTMLIFrameElement>(null);
+//   const apiRef = useRef<any>(null);
+//   const runUidRef = useRef<string | null>(null);
+//   const sitUidRef = useRef<string | null>(null);
+//   const scrollTimerRef = useRef<number | null>(null);
+//   const isRunningRef = useRef<boolean>(false);
 
-  useEffect(() => {
-    if (!groupRef.current) return;
+//   useEffect(() => {
+//     const ensureScript = () =>
+//       new Promise<void>((resolve, reject) => {
+//         const existing = document.getElementById('sketchfab-api');
+//         if (existing) {
+//           resolve();
+//           return;
+//         }
+//         const s = document.createElement('script');
+//         s.id = 'sketchfab-api';
+//         s.src = 'https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js';
+//         s.async = true;
+//         s.onload = () => resolve();
+//         s.onerror = () => reject(new Error('Failed to load Sketchfab API'));
+//         document.head.appendChild(s);
+//       });
 
-    // Simple idle animation
-    const animate = () => {
-      if (groupRef.current) {
-        // Gentle bobbing motion
-        groupRef.current.position.y = Math.sin(Date.now() * 0.001) * 0.05;
-        // Gentle rotation
-        groupRef.current.rotation.y = Math.sin(Date.now() * 0.0005) * 0.1;
-      }
-      requestAnimationFrame(animate);
-    };
-    animate();
-  }, []);
+//     let scrollHandler: (() => void) | null = null;
 
-  return (
-    <group ref={groupRef} position={[0, -0.5, 0]}>
-      {/* Head */}
-      <mesh position={[0, 1.3, 0]}>
-        <sphereGeometry args={[0.25, 32, 32]} />
-        <meshStandardMaterial color="#ffdbac" />
-      </mesh>
+//     ensureScript().then(() => {
+//       if (!iframeRef.current) return;
+//       const Sketchfab = (window as any).Sketchfab;
+//       const client = new Sketchfab(iframeRef.current);
+//       client.init('ff95785538a445eb8d5ee3c913aa76f6', {
+//         transparent: 1,
+//         ui_controls: 0,
+//         ui_infos: 0,
+//         ui_watermark: 0,
+//         ui_annotations: 0,
+//         ui_hint: 0,
+//         dnt: 1,
+//         autostart: 1,
+//         preload: 1,
+//         success: (api: any) => {
+//           apiRef.current = api;
+//           api.addEventListener('viewerready', () => {
+//             api.getAnimations((err: any, animations: any[]) => {
+//               if (err || !animations) return;
+//               const findUid = (names: string[]) => {
+//                 const nset = names.map((n) => n.toLowerCase());
+//                 const m = animations.find((a: any) => {
+//                   const name = String(a.name || '').toLowerCase();
+//                   return nset.some((n) => name.includes(n));
+//                 });
+//                 return m ? String(m.uid || m.id || '') : null;
+//               };
+//               runUidRef.current = findUid(['run', 'walk', 'running']);
+//               sitUidRef.current = findUid(['sit', 'idle', 'rest']);
+//               if (sitUidRef.current) {
+//                 api.setCurrentAnimationByUID(sitUidRef.current);
+//                 api.play();
+//                 isRunningRef.current = false;
+//               }
+//             });
+//           });
 
-      {/* Hair */}
-      <mesh position={[0, 1.5, 0]}>
-        <sphereGeometry args={[0.28, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color="#4a2c2a" />
-      </mesh>
+//           scrollHandler = () => {
+//             if (!apiRef.current) return;
+//             if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+//             if (!isRunningRef.current) {
+//               if (runUidRef.current) {
+//                 apiRef.current.setCurrentAnimationByUID(runUidRef.current);
+//                 apiRef.current.play();
+//               } else {
+//                 apiRef.current.play();
+//               }
+//               isRunningRef.current = true;
+//             }
+//             scrollTimerRef.current = window.setTimeout(() => {
+//               if (!apiRef.current) return;
+//               if (sitUidRef.current) {
+//                 apiRef.current.setCurrentAnimationByUID(sitUidRef.current);
+//                 apiRef.current.play();
+//               } else {
+//                 apiRef.current.pause();
+//               }
+//               isRunningRef.current = false;
+//             }, 300);
+//           };
 
-      {/* Eyes */}
-      <mesh position={[-0.08, 1.35, 0.2]}>
-        <sphereGeometry args={[0.03, 16, 16]} />
-        <meshStandardMaterial color="#2c1810" />
-      </mesh>
-      <mesh position={[0.08, 1.35, 0.2]}>
-        <sphereGeometry args={[0.03, 16, 16]} />
-        <meshStandardMaterial color="#2c1810" />
-      </mesh>
+//           window.addEventListener('scroll', scrollHandler as EventListener, { passive: true } as any);
+//         },
+//         error: () => {}
+//       });
+//     });
 
-      {/* Body */}
-      <mesh position={[0, 0.7, 0]}>
-        <cylinderGeometry args={[0.2, 0.25, 0.8, 32]} />
-        <meshStandardMaterial color="#20B2AA" />
-      </mesh>
+//     return () => {
+//       if (scrollHandler) window.removeEventListener('scroll', scrollHandler as EventListener);
+//       if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current);
+//     };
+//   }, []);
 
-      {/* Arms */}
-      <mesh position={[-0.3, 0.8, 0]} rotation={[0, 0, 0.3]}>
-        <cylinderGeometry args={[0.05, 0.05, 0.5, 16]} />
-        <meshStandardMaterial color="#ffdbac" />
-      </mesh>
-      <mesh position={[0.3, 0.8, 0]} rotation={[0, 0, -0.3]}>
-        <cylinderGeometry args={[0.05, 0.05, 0.5, 16]} />
-        <meshStandardMaterial color="#ffdbac" />
-      </mesh>
-
-      {/* Legs */}
-      <mesh position={[-0.12, 0.05, 0]}>
-        <cylinderGeometry args={[0.06, 0.06, 0.5, 16]} />
-        <meshStandardMaterial color="#2c5282" />
-      </mesh>
-      <mesh position={[0.12, 0.05, 0]}>
-        <cylinderGeometry args={[0.06, 0.06, 0.5, 16]} />
-        <meshStandardMaterial color="#2c5282" />
-      </mesh>
-    </group>
-  );
-}
-
-export default function Character3D() {
-  return (
-    <div className="fixed bottom-8 right-8 w-48 h-48 pointer-events-auto z-50">
-      <Canvas
-        camera={{ position: [0, 1, 3], fov: 50 }}
-        style={{ background: 'transparent' }}
-      >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        <pointLight position={[-5, 5, -5]} intensity={0.5} color="#20B2AA" />
-        <Character />
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          minPolarAngle={Math.PI / 3}
-          maxPolarAngle={Math.PI / 2}
-        />
-      </Canvas>
-    </div>
-  );
-}
+//   return (
+//     <div className="fixed bottom-8 right-8 w-48 h-38 pointer-events-auto z-50">
+//       <div className="sketchfab-embed-wrapper" style={{ width: '100%', height: '100%' }}>
+//         <iframe
+//           ref={iframeRef}
+//           title="Chibi Nezuko (Kimetsu no Yaiba) - VRChat Avatar"
+//           allow="autoplay; fullscreen; xr-spatial-tracking"
+//           frameBorder={0}
+//           allowFullScreen
+//           style={{ width: '62%', height: '62%', background: 'transparent', pointerEvents: 'none' }}
+//         />
+//       </div>
+//     </div>
+//   );
+// }

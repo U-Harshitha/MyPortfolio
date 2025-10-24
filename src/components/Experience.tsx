@@ -16,11 +16,11 @@ const Experience = () => {
       icon: Briefcase,
     },
     {
-      title: "Code for Good Winner",
-      company: "JP Morgan Chase",
-      period: "2024",
-      description: "Led team to victory in 24-hour hackathon building social impact technology.",
-      icon: Award,
+      title: "DevOps Intern",
+      company: "Stalcon",
+      period: "2023",
+      description: "Implemented CI/CD pipelines and managed cloud infrastructure on AWS.",
+      icon: Briefcase,
     },
     {
       title: "GenAI Engineering Intern",
@@ -30,41 +30,54 @@ const Experience = () => {
       icon: Briefcase,
     },
     {
-      title: "DevOps Intern",
-      company: "Stalcon",
-      period: "2023",
-      description: "Implemented CI/CD pipelines and managed cloud infrastructure on AWS.",
-      icon: Briefcase,
+      title: "Coordinator",
+      company: "Designathon, VNRVJIET",
+      period: "2025-Present",
+      description: "Led community initiatives and organized technology workshops for underprivileged students.",
+      icon: Award,
+    },
+    {
+      title: "Documentation Head",
+      company: "Computer Society of India, VNRVJIET",
+      period: "2024-Present",
+      description: "Led workshops and national-level events for over 600 students, enhancing technical and career-oriented skills.",
+      icon: Award,
     },
     {
       title: "Vice President",
       company: "Street Cause",
-      period: "2022-Present",
+      period: "2023-2025",
       description: "Led community initiatives and organized technology workshops for underprivileged students.",
       icon: Award,
     },
+    {
+      title: "Technical Head and Hospitality",
+      company: "TedXVNRVJIET",
+      period: "2023-Present",
+      description: "Led community initiatives and organized technology workshops for underprivileged students.",
+      icon: Award,
+    }
   ];
 
   return (
-    <section id="experience" className="section-padding" ref={ref}>
+    <section id="experience" className="section-padding pt-16 pb-16" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-8"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">Experience & Leadership</h2>
           <p className="text-lg text-foreground/80 max-w-3xl">
-            My journey through internships, competitions, and leadership roles.
+            My journey through internships, and leadership roles.
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-secondary" />
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.title}
@@ -79,8 +92,8 @@ const Experience = () => {
                 <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 border-4 border-background" />
 
                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"}`}>
-                  <div className="ml-16 md:ml-0 bg-card border border-border rounded-lg p-6 hover-glow">
-                    <div className="flex items-center gap-3 mb-2">
+                  <div className="ml-16 md:ml-0 bg-card border border-border rounded-lg p-5 hover-glow">
+                    <div className="flex items-center gap-1 mb-2">
                       <exp.icon className="w-5 h-5 text-primary" />
                       <h3 className="text-xl font-semibold">{exp.title}</h3>
                     </div>

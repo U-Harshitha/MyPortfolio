@@ -1,6 +1,6 @@
 # My Portfolio
 
-Explore my professional portfolio at [https://u-harshitha.github.io/MyPortfolio/].[5]
+Explore my professional portfolio at [https://u-harshitha.github.io/portfolio/].[5]
 
 ## Overview
 
